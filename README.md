@@ -19,18 +19,39 @@ alphabet shifted cyclically to the left compared to the previous alphabet, corre
 
 ## ALGORITHM:
 
-STEP-1: Arrange the alphabets in row and column of a 26*26 matrix.
-STEP-2: Circulate the alphabets in each row to position left such that the first letter is attached to last.
-STEP-3: Repeat this process for all 26 rows and construct the final key matrix.
-STEP-4: The keyword and the plain text is read from the user.
-STEP-5: The characters in the keyword are repeated sequentially so as to match with that of the plain text.
-STEP-6: Pick the first letter of the plain text and that of the keyword as the row indices and column indices respectively.
-STEP-7: The junction character where these two meet forms the cipher character.
-STEP-8: Repeat the above steps to generate the entire cipher text.
+## STEP-1: Arrange the alphabets in row and column of a 26*26 matrix.
+## STEP-2: Circulate the alphabets in each row to position left such that the first letter is attached to last.
+## STEP-3: Repeat this process for all 26 rows and construct the final key matrix.
+## STEP-4: The keyword and the plain text is read from the user.
+## STEP-5: The characters in the keyword are repeated sequentially so as to match with that of the plain text.
+## STEP-6: Pick the first letter of the plain text and that of the keyword as the row indices and column indices respectively.
+## STEP-7: The junction character where these two meet forms the cipher character.
+## STEP-8: Repeat the above steps to generate the entire cipher text.
 
 
 ## PROGRAM
+```
+def vigenere_cipher(text, key, decrypt=False):
+    result = []
+    key_len = len(key)
+    for i, char in enumerate(text):
+        shift = ord(key[i % key_len]) - ord('A')
+        if decrypt:
+            shift = 26 - shift
+        new_char = chr((ord(char) - ord('A') + shift) % 26 + ord('A'))
+        result.append(new_char)
+    return "".join(result)
+text = input("Enter text (UPPERCASE only): ")
+key = input("Enter key (UPPERCASE only): ")
+encrypted = vigenere_cipher(text, key, decrypt=False)
+print("Encrypted Message:", encrypted)
+decrypted = vigenere_cipher(encrypted, key, decrypt=True)
+print("Decrypted Message:", decrypted)
+
+```
 
 ## OUTPUT
+<img width="1547" height="429" alt="image" src="https://github.com/user-attachments/assets/1cbb5445-2647-43e8-a385-d35198aaaa5e" />
 
 ## RESULT
+Thus the program executed successfully
